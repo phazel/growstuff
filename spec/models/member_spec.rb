@@ -11,6 +11,19 @@ describe 'member' do
       @member.save.should be_true
     end
 
+    it 'should refuse to create a member with a non-unique username' do
+      @member.save
+      @duplicate_member = FactoryGirl.build(:member, :email =>
+          "duplicate@something.com")
+      @duplicate_member.save.should be_false
+    end
+    
+    it 'should refuse to create a member with a non-unique email address' do
+      @member.save
+      @duplicate_member = FactoryGirl.build(:member, :login_name => "duplicate")
+      @duplicate_member.save.should be_false
+    end
+
     it 'should be fetchable from the database' do
       @member.save
       @member2 = Member.find(@member.id)
