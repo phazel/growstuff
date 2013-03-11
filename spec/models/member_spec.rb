@@ -126,4 +126,15 @@ describe 'member' do
     end
   end
 
+  context 'payments' do
+    before(:each) do
+      @member = FactoryGirl.create(:member)
+      @payment = FactoryGirl.create(:payment, :payer => @member)
+    end
+
+    it "member has payments" do
+      @member.payments.first.should eq @payment
+    end
+  end
+
 end
