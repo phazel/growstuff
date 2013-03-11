@@ -18,10 +18,16 @@ describe Payment do
       @payment.save.should_not be_true
     end
 
-    it "must be greater than or equal to 10" do
-      @payment = FactoryGirl.build(:payment, :amount => 3)
+    it "can get the min payment from config" do
+      @min = Growstuff::Application.config.min_payment
+      @min.should eq 10
+    end
+
+    it "must be greater than or equal to min_payment" do
+      @min = Growstuff::Application.config.min_payment
+      @payment = FactoryGirl.build(:payment, :amount => @min-1)
       @payment.save.should_not be_true
-      @payment2 = FactoryGirl.build(:payment, :amount => 10)
+      @payment2 = FactoryGirl.build(:payment, :amount => @min)
       @payment2.save.should be_true
     end
   end

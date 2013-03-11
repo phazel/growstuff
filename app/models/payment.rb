@@ -5,5 +5,5 @@ class Payment < ActiveRecord::Base
   belongs_to :recipient, :class_name => 'Member'
 
   validates :amount, :presence => true,
-    :numericality => {:greater_than_or_equal_to => 10}
+    :numericality => {:greater_than_or_equal_to => Growstuff::Application.config.min_payment}
 end

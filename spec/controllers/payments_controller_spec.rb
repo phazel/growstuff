@@ -5,7 +5,7 @@ describe PaymentsController do
   login_member
 
   def valid_attributes
-    { "payer_id" => "1" }
+    { "payer_id" => "1", "amount" => 25 }
   end
 
   describe "GET index" do
