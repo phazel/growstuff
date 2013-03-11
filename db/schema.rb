@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222060730) do
+ActiveRecord::Schema.define(:version => 20130311002757) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id",    :null => false
@@ -82,6 +82,11 @@ ActiveRecord::Schema.define(:version => 20130222060730) do
     t.string   "location"
     t.float    "latitude"
     t.float    "longitude"
+    t.text     "about_me"
+    t.string   "full_name"
+    t.string   "gardening_since"
+    t.string   "wish_i_could_grow"
+    t.string   "gardening_clothes"
   end
 
   add_index "members", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
@@ -104,6 +109,16 @@ ActiveRecord::Schema.define(:version => 20130222060730) do
     t.integer  "post_id"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "payer_id"
+    t.integer  "recipient_id"
+    t.decimal  "amount"
+    t.date     "paid_period_begins"
+    t.date     "paid_period_ends"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "plantings", :force => true do |t|

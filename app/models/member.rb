@@ -10,6 +10,9 @@ class Member < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_many :notifications, :foreign_key => 'recipient_id'
   has_many :sent_notifications, :foreign_key => 'sender_id'
+  has_many :payments, :foreign_key => 'payer_id'
+  # also has many payments as recipient, but we're not using that yet,
+  # until we set up paying for gift accounts for other people.
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

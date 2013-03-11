@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Payer:
+  = @payment.payer_id
+%p
+  %b Recipient:
+  = @payment.recipient_id
+%p
+  %b Amount:
+  = @payment.amount
+%p
+  %b Paid period begins:
+  = @payment.paid_period_begins
+%p
+  %b Paid period ends:
+  = @payment.paid_period_ends
+
+= link_to 'Edit', edit_payment_path(@payment)
+\|
+= link_to 'Back', payments_path

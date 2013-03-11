@@ -6,7 +6,11 @@ class Ability
 
     # everyone can do these things, even non-logged in
     can :read, :all
+
+    # logged out members shouldn't be able to do stuff that only makes
+    # sense for members
     cannot :read, Notification
+    cannot :read, Payment
 
     # nobody should be able to view this except admins
     cannot :read, Role
@@ -29,6 +33,11 @@ class Ability
       can :read, Notification, :recipient_id => member.id
       can :destroy, Notification, :recipient_id => member.id
       # note we don't support create/update for notifications
+
+      # logged in members can pay for an account, but nobody can edit or
+      # delete payments
+      can :create, Payment
+      can :read, Payment, :payer_id => member.id
 
       # for now, anyone can create/edit/destroy crops
       # (later, we probably want to limit this to a role)
