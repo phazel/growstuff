@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  load_and_authorize_resource
   # GET /payments
   # GET /payments.json
   def index
@@ -35,6 +36,8 @@ class PaymentsController < ApplicationController
   # POST /payments
   # POST /payments.json
   def create
+    params[:payment][:payer_id] = current_member.id
+    params[:payment][:recipient_id] = current_member.id
     @payment = Payment.new(params[:payment])
 
     respond_to do |format|
