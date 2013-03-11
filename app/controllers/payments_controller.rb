@@ -32,11 +32,6 @@ class PaymentsController < ApplicationController
     end
   end
 
-  # GET /payments/1/edit
-  def edit
-    @payment = Payment.find(params[:id])
-  end
-
   # POST /payments
   # POST /payments.json
   def create
@@ -53,31 +48,4 @@ class PaymentsController < ApplicationController
     end
   end
 
-  # PUT /payments/1
-  # PUT /payments/1.json
-  def update
-    @payment = Payment.find(params[:id])
-
-    respond_to do |format|
-      if @payment.update_attributes(params[:payment])
-        format.html { redirect_to @payment, notice: 'Payment was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /payments/1
-  # DELETE /payments/1.json
-  def destroy
-    @payment = Payment.find(params[:id])
-    @payment.destroy
-
-    respond_to do |format|
-      format.html { redirect_to payments_url }
-      format.json { head :no_content }
-    end
-  end
 end
